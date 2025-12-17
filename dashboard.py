@@ -62,15 +62,11 @@ def render_ui():
                 st.metric(label="Current Price", value=f"${current_price:.2f}")
 
             with col2:
-                # חישוב השינוי היומי (מחיר היום פחות מחיר אתמול)
-                # מוודאים שיש לפחות יומיים של דאטה כדי לעשות חיסור
                 if len(df) >= 2:
                     prev_price = df['Close'].iloc[-2]
                     change = current_price - prev_price
-                    # הפרמטר delta צובע אוטומטית בירוק/אדום ומוסיף חץ
                     st.metric(label="Daily Change", value=f"{change:.2f}", delta=f"{change:.2f}")
 
-            # כותרת משנית לגרף
             st.subheader("Price History (Last 30 Days)")
 
             # מצייר את הגרף בשורה אחת פשוטה
